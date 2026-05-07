@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no-install validate-branch-name
+
+# Check if any files in apps/web have been modified
+# Compare against the remote branch being pushed to
+remote="$1"
+url="$2"
+
+# Get the current branch name
+current_branch=$(git symbolic-ref --short HEAD)
+
+# Check if the remote branch exists
+if git rev-parse --verify "origin/$current_branch" >/dev/null 2>&1; then
+  # Compare with remote branch
+  changed_files=$(git diff --name-only "origin/$current_branch"...HEAD)
+else
+  # If remote branch doesn't exist, check all commits in current branch
+  changed_files=$(git diff --name-only origin/main...HEAD 2>/dev/null || git diff --name-only --cached)
+fi
+
+# Check if any files in apps/web were modified
+if echo "$changed_files" | grep -q "^apps/web/"; then
+  echo "🔍 Detected changes in apps/web, running build..."
+  npm run build:staging:web
+else
+  echo "✅ No changes in apps/web, skipping build"
+fi

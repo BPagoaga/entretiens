@@ -1,0 +1,7 @@
+export enum JxtBookingStatusEnum {
+  REQUESTED = 'REQUESTED',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  CANCELLED = 'CANCELLED',
+  FINISHED = 'FINISHED',
+}
