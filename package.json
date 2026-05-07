@@ -2,7 +2,6 @@
   "name": "entretiens",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -16,7 +15,8 @@
     "make-public-api-services": "node scripts/make-public-api.cjs src/api/services/ src/api/services/index.ts tsconfig.json",
     "make-public-api:staging": "npm run make-public-api-services && npm run build:models",
     "make-public-api:preprod": "npm run make-public-api-services && npm run build:models",
-    "make-public-api:prod": "npm run make-public-api-services && npm run build:models"
+    "make-public-api:prod": "npm run make-public-api-services && npm run build:models",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",
@@ -33,6 +33,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "validate-branch-name": "^1.3.2",
     "@commitlint/config-conventional": "20.3.1",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.2.4",
