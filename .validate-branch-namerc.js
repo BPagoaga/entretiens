@@ -2,7 +2,7 @@ const types = ['fix', 'feature', 'chore', 'ci'];
 const typesString = types.join('|');
 const issuePrefix = 'ND';
 const issueNumber = '\\d{1,6}';
-const pattern = `^(develop)|(main)|((${typesString})\/${issuePrefix}-${issueNumber}(-.*)?$`;
+const pattern = `^(develop)|(main)|(${typesString})\/${issuePrefix}-${issueNumber}(-.*)?$`;
 
 module.exports = {
   pattern: [pattern],

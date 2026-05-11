@@ -2,7 +2,7 @@
 
 Story : as a user, I want to be able to login using some demo credentials. If my credentials are incorrect, it should
 be highlighted by an error message below the password input.
-After login, I should see a the list of my bookings for the upcoming month
+After login, I should see the list of my bookings for the current week
 
 ## Before you begin
 
@@ -21,6 +21,7 @@ After login, I should see a the list of my bookings for the upcoming month
 > - react-hook-form: https://react-hook-form.com/get-started#Integratingwithservices
 > - zod: https://zod.dev/
 > - react-hook-form + zod: https://github.com/react-hook-form/resolvers
+> - luxon: https://moment.github.io/luxon/#/?id=luxon
 
 ## Fix errors preventing the app to build
 
@@ -39,7 +40,8 @@ In the current state, the app might throw errors when trying to build. If necess
 
 We want to fetch bookings based on some filters :
 
-- the resource name (that the user can defined using an input)
+- the booking summary (that the user can defined using an input)
+- the resource name (that the user can defined using an input) (BONUS)
 - from and to parameters, these should be hardcoded : from should be the start of the week, and to should be the
   end of the week
 - use zustand to handle the "filters" state across the app, and persist it to localStorage
