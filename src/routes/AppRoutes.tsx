@@ -18,6 +18,9 @@ import {
   PROFILE_ROUTE,
   NOT_FOUND_ROUTE,
 } from './constants';
+import { updateAxiosInterceptors } from '../hooks/helpers';
+import { axiosInstanceV4 } from '../api';
+import { useInterceptors } from '../hooks/useInterceptors';
 
 export const AppRoutes = (): JSX.Element => {
   const queryClient = useQueryClient();
@@ -26,6 +29,11 @@ export const AppRoutes = (): JSX.Element => {
   const features = user?.capabilities?.features;
   const hasCollaborators = features?.collaborators;
   const [ready, setReady] = useState<boolean>(false);
+  const { axiosInterceptorsConfig } = useInterceptors();
+
+  useEffect(() => {
+    return updateAxiosInterceptors(axiosInstanceV4, axiosInterceptorsConfig);
+  }, [axiosInterceptorsConfig]);
 
   useEffect(() => {
     if (!token) {

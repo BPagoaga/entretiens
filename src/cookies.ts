@@ -30,6 +30,10 @@ export const CookieService = {
     });
   },
 
+  getAll() {
+    return this.cookies.getAll();
+  },
+
   getCookie(name: string): string {
     return this.cookies.get(name);
   },
@@ -41,5 +45,12 @@ export const CookieService = {
       options = { ...options, ...overrideOptions };
     }
     return this.cookies.remove(name, options);
+  },
+
+  clear(): void {
+    Object.keys(this.cookies.getAll())?.forEach((name: string) => {
+      console.log('Deleting cookie', name);
+      this.deleteCookie(name);
+    });
   },
 };
