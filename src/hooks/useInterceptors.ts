@@ -1,7 +1,7 @@
 import { AxiosError, AxiosHeaders } from 'axios';
-import { useLayoutEffect, useCallback, useMemo, useEffect } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useStore } from '../store';
-import { isJwtTokenExpired, updateAxiosInterceptors } from './helpers';
+import { isJwtTokenExpired } from './helpers';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { CookieService } from '../cookies';
 
