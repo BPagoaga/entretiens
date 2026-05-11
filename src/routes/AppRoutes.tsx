@@ -25,7 +25,7 @@ import { useInterceptors } from '../hooks/useInterceptors';
 export const AppRoutes = (): JSX.Element => {
   const queryClient = useQueryClient();
   const { user, isLoading } = useFetchUser();
-  const token = useStore((state) => state.token);
+  const [token] = useStore((state) => [state.token]);
   const features = user?.capabilities?.features;
   const hasCollaborators = features?.collaborators;
   const [ready, setReady] = useState<boolean>(false);
